@@ -311,6 +311,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Animate brainwave bars
     function animateBrainwaveBars() {
         const bars = document.querySelectorAll('.wave-bar');
+        const waveItems = document.querySelectorAll('.wave-item');
+        
         bars.forEach(bar => {
             const value = parseInt(bar.getAttribute('data-value'));
             const maxWidth = 120; // Maximum width in pixels
@@ -334,10 +336,48 @@ document.addEventListener('DOMContentLoaded', function() {
                 bar.style.background = color;
             }, 500);
         });
+        
+        // Set background color for wave items based on their values
+        waveItems.forEach(item => {
+            const alphaValue = parseInt(item.getAttribute('data-alpha-value')) || 0;
+            const thetaValue = parseInt(item.getAttribute('data-theta-value')) || 0;
+            const maxValue = Math.max(alphaValue, thetaValue);
+            
+            // Set background color based on the higher value
+            let bgColor;
+            if (maxValue >= 200) {
+                bgColor = 'rgba(66, 250, 87, 0.1)'; // High values - light green
+            } else if (maxValue >= 100) {
+                bgColor = 'rgba(102, 126, 234, 0.1)'; // Medium values - light blue
+            } else if (maxValue >= 50) {
+                bgColor = 'rgba(118, 75, 162, 0.1)'; // Lower values - light purple
+            } else {
+                bgColor = 'rgba(231, 76, 60, 0.1)'; // Very low values - light red
+            }
+            
+            setTimeout(() => {
+                item.style.background = bgColor;
+                item.style.border = `1px solid ${bgColor.replace('0.1', '0.3')}`;
+            }, 500);
+        });
     }
     
     // Initialize brainwave bars animation
     animateBrainwaveBars();
+    
+    // Interactive checkbox effects for consent
+    const consentCheckbox = document.getElementById('consent');
+    const consentLabel = document.querySelector('.consent-label');
+    
+    if (consentCheckbox && consentLabel) {
+        consentCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                consentLabel.classList.add('checked');
+            } else {
+                consentLabel.classList.remove('checked');
+            }
+        });
+    }
     
     // Add CSS for ripple animation
     const style = document.createElement('style');
