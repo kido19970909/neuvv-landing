@@ -245,22 +245,23 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Interactive radio button effects
-    const radioInputs = document.querySelectorAll('input[type="radio"]');
-    radioInputs.forEach(radio => {
+    // Interactive box selection effects
+    const boxSelectionInputs = document.querySelectorAll('.box-selection-label input[type="radio"]');
+    boxSelectionInputs.forEach(radio => {
         radio.addEventListener('change', function() {
             // Add ripple effect
             const ripple = document.createElement('div');
             ripple.style.cssText = `
                 position: absolute;
-                border-radius: 50%;
+                border-radius: 10px;
                 background: rgba(102, 126, 234, 0.3);
                 transform: scale(0);
                 animation: ripple 0.6s linear;
                 pointer-events: none;
             `;
             
-            const rect = this.getBoundingClientRect();
+            const boxElement = this.nextElementSibling;
+            const rect = boxElement.getBoundingClientRect();
             const size = Math.max(rect.width, rect.height);
             ripple.style.width = ripple.style.height = size + 'px';
             ripple.style.left = (rect.left + rect.width / 2 - size / 2) + 'px';
@@ -272,13 +273,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 ripple.remove();
             }, 600);
             
-            // Add glow effect to selected option
-            const radioLabel = this.closest('.radio-label');
-            radioLabel.style.transform = 'scale(1.05)';
-            radioLabel.style.transition = 'transform 0.3s ease';
+            // Add bounce effect to selected box
+            const boxSelectionLabel = this.closest('.box-selection-label');
+            const boxSelectionBox = boxSelectionLabel.querySelector('.box-selection-box');
+            boxSelectionBox.style.transform = 'scale(1.05)';
+            boxSelectionBox.style.transition = 'transform 0.3s ease';
             
             setTimeout(() => {
-                radioLabel.style.transform = 'scale(1)';
+                boxSelectionBox.style.transform = 'scale(1.02)';
             }, 300);
         });
     });
