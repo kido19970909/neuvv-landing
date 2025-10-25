@@ -317,8 +317,21 @@ document.addEventListener('DOMContentLoaded', function() {
             const percentage = Math.min(value / 300, 1); // Cap at 300% for display
             const width = maxWidth * percentage;
             
+            // Set color based on value
+            let color;
+            if (value >= 200) {
+                color = 'linear-gradient(90deg, #42FA57 0%, #27ae60 100%)'; // High values - bright green
+            } else if (value >= 100) {
+                color = 'linear-gradient(90deg, #667eea 0%, #42FA57 100%)'; // Medium values - blue to green
+            } else if (value >= 50) {
+                color = 'linear-gradient(90deg, #764ba2 0%, #667eea 100%)'; // Lower values - purple to blue
+            } else {
+                color = 'linear-gradient(90deg, #e74c3c 0%, #f39c12 100%)'; // Very low values - red to orange
+            }
+            
             setTimeout(() => {
                 bar.style.width = width + 'px';
+                bar.style.background = color;
             }, 500);
         });
     }
