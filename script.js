@@ -308,6 +308,24 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // Animate brainwave bars
+    function animateBrainwaveBars() {
+        const bars = document.querySelectorAll('.wave-bar');
+        bars.forEach(bar => {
+            const value = parseInt(bar.getAttribute('data-value'));
+            const maxWidth = 120; // Maximum width in pixels
+            const percentage = Math.min(value / 300, 1); // Cap at 300% for display
+            const width = maxWidth * percentage;
+            
+            setTimeout(() => {
+                bar.style.width = width + 'px';
+            }, 500);
+        });
+    }
+    
+    // Initialize brainwave bars animation
+    animateBrainwaveBars();
+    
     // Add CSS for ripple animation
     const style = document.createElement('style');
     style.textContent = `

@@ -121,7 +121,7 @@ h1, h2, h3 {
     font-size: 47px;
     font-weight: 700;
     color: #42FA57;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     line-height: 1.2;
 }
 
@@ -532,6 +532,40 @@ h1, h2, h3 {
     border-radius: 8px;
 }
 
+.wave-bar-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    margin-left: 10px;
+}
+
+.wave-bar {
+    height: 8px;
+    background: linear-gradient(90deg, #42FA57 0%, #667eea 100%);
+    border-radius: 4px;
+    width: 0;
+    transition: width 1.5s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.wave-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
 .wave-label {
     font-size: 0.9rem;
     color: #555;
@@ -571,11 +605,13 @@ h1, h2, h3 {
     line-height: 1.5;
 }
 
-.product-description {
-    font-size: 0.9rem;
-    color: #666;
-    line-height: 1.6;
+.product-description strong {
+    display: block;
     margin-top: 15px;
+    font-size: 0.8rem;
+    color: #888;
+    line-height: 1.8;
+    font-weight: 500;
 }
 
 .sample-request-btn-container {
@@ -684,11 +720,14 @@ h1, h2, h3 {
     margin-right: 8px;
     position: relative;
     transition: all 0.3s ease;
+    background: white;
 }
 
 .radio-label input[type="radio"]:checked + .radio-custom {
     border-color: #667eea;
     background: #667eea;
+    transform: scale(1.1);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
 }
 
 .radio-label input[type="radio"]:checked + .radio-custom::after {
@@ -701,6 +740,22 @@ h1, h2, h3 {
     height: 8px;
     background: white;
     border-radius: 50%;
+    animation: radioFill 0.3s ease-in-out;
+}
+
+@keyframes radioFill {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
 }
 
 .checkbox-label {
@@ -718,15 +773,18 @@ h1, h2, h3 {
     width: 20px;
     height: 20px;
     border: 2px solid #e1e8ed;
-    border-radius: 4px;
+    border-radius: 50%;
     margin-right: 8px;
     position: relative;
     transition: all 0.3s ease;
+    background: white;
 }
 
 .checkbox-label input[type="checkbox"]:checked + .checkbox-custom {
     border-color: #667eea;
     background: #667eea;
+    transform: scale(1.1);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
 }
 
 .checkbox-label input[type="checkbox"]:checked + .checkbox-custom::after {
@@ -738,6 +796,22 @@ h1, h2, h3 {
     color: white;
     font-size: 12px;
     font-weight: bold;
+    animation: checkboxFill 0.3s ease-in-out;
+}
+
+@keyframes checkboxFill {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
 }
 
 .submit-btn {
