@@ -212,7 +212,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
     
     // Observe elements for animation
-    const animatedElements = document.querySelectorAll('.value-card, .product-card, .philosophy-content');
+    const animatedElements = document.querySelectorAll('.value-card, .product-card, .brand-content');
     animatedElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
@@ -244,4 +244,79 @@ document.addEventListener('DOMContentLoaded', function() {
             this.parentElement.style.transform = 'scale(1)';
         });
     });
+    
+    // Interactive radio button effects
+    const radioInputs = document.querySelectorAll('input[type="radio"]');
+    radioInputs.forEach(radio => {
+        radio.addEventListener('change', function() {
+            // Add ripple effect
+            const ripple = document.createElement('div');
+            ripple.style.cssText = `
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(102, 126, 234, 0.3);
+                transform: scale(0);
+                animation: ripple 0.6s linear;
+                pointer-events: none;
+            `;
+            
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = (rect.left + rect.width / 2 - size / 2) + 'px';
+            ripple.style.top = (rect.top + rect.height / 2 - size / 2) + 'px';
+            
+            document.body.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+            
+            // Add glow effect to selected option
+            const radioLabel = this.closest('.radio-label');
+            radioLabel.style.transform = 'scale(1.05)';
+            radioLabel.style.transition = 'transform 0.3s ease';
+            
+            setTimeout(() => {
+                radioLabel.style.transform = 'scale(1)';
+            }, 300);
+        });
+    });
+    
+    // Interactive select effects
+    const selectInputs = document.querySelectorAll('select');
+    selectInputs.forEach(select => {
+        select.addEventListener('change', function() {
+            // Add bounce effect
+            this.style.transform = 'scale(1.05)';
+            this.style.transition = 'transform 0.2s ease';
+            
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 200);
+            
+            // Add color change for selected option
+            if (this.value) {
+                this.style.borderColor = '#42FA57';
+                this.style.boxShadow = '0 0 0 3px rgba(66, 250, 87, 0.1)';
+                
+                setTimeout(() => {
+                    this.style.borderColor = '#e1e8ed';
+                    this.style.boxShadow = 'none';
+                }, 1000);
+            }
+        });
+    });
+    
+    // Add CSS for ripple animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
 });
