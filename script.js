@@ -1,5 +1,7 @@
 // Form validation and interactive features
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize brainwave visualization
+    new BrainwaveVisualization();
     const form = document.getElementById('sampleForm');
     const phoneInput = document.getElementById('phone');
     
@@ -393,3 +395,174 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.head.appendChild(style);
 });
+
+// Brainwave Visualization Class
+class BrainwaveVisualization {
+    constructor() {
+        this.canvas = document.getElementById('brainwaveCanvas');
+        if (!this.canvas) return;
+        
+        this.ctx = this.canvas.getContext('2d');
+        this.width = this.canvas.width;
+        this.height = this.canvas.height;
+        this.offset = 0;
+        this.isAnimating = true;
+        this.currentWave = 'alpha';
+        this.animationId = null;
+        
+        this.waveConfigs = {
+            alpha: {
+                name: '알파파 (Alpha)',
+                frequency: 0.02,
+                amplitude: 40,
+                color: '#B8A8D8',
+                description: '이완된 각성 상태 (8-13 Hz)'
+            },
+            theta: {
+                name: '세타파 (Theta)',
+                frequency: 0.015,
+                amplitude: 50,
+                color: '#6B7FA8',
+                description: '깊은 이완과 명상 상태 (4-8 Hz)'
+            },
+            delta: {
+                name: '델타파 (Delta)',
+                frequency: 0.01,
+                amplitude: 60,
+                color: '#2D3B5F',
+                description: '깊은 수면 상태 (0.5-4 Hz)'
+            }
+        };
+        
+        this.init();
+    }
+    
+    init() {
+        this.setupEventListeners();
+        this.drawWave();
+    }
+    
+    setupEventListeners() {
+        // Wave type buttons
+        const waveButtons = document.querySelectorAll('.wave-btn');
+        waveButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const waveType = btn.getAttribute('data-wave');
+                this.setWaveType(waveType);
+            });
+        });
+        
+        // Play/Pause button
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        if (playPauseBtn) {
+            playPauseBtn.addEventListener('click', () => {
+                this.toggleAnimation();
+            });
+        }
+    }
+    
+    setWaveType(waveType) {
+        this.currentWave = waveType;
+        
+        // Update active button
+        document.querySelectorAll('.wave-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        document.querySelector(`[data-wave="${waveType}"]`).classList.add('active');
+        
+        // Update wave info
+        const config = this.waveConfigs[waveType];
+        document.getElementById('waveName').textContent = config.name;
+        document.getElementById('waveName').style.color = config.color;
+        document.getElementById('waveDescription').textContent = config.description;
+    }
+    
+    toggleAnimation() {
+        this.isAnimating = !this.isAnimating;
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        
+        if (this.isAnimating) {
+            playPauseBtn.textContent = '⏸ 일시정지';
+            playPauseBtn.classList.remove('paused');
+            this.drawWave();
+        } else {
+            playPauseBtn.textContent = '▶ 재생';
+            playPauseBtn.classList.add('paused');
+            if (this.animationId) {
+                cancelAnimationFrame(this.animationId);
+            }
+        }
+    }
+    
+    drawWave() {
+        this.ctx.clearRect(0, 0, this.width, this.height);
+        
+        const config = this.waveConfigs[this.currentWave];
+        const centerY = this.height / 2;
+        
+        // Background gradient
+        const bgGradient = this.ctx.createLinearGradient(0, 0, 0, this.height);
+        bgGradient.addColorStop(0, '#F5F5F7');
+        bgGradient.addColorStop(1, '#E8E9ED');
+        this.ctx.fillStyle = bgGradient;
+        this.ctx.fillRect(0, 0, this.width, this.height);
+        
+        // Grid lines
+        this.ctx.strokeStyle = '#E8E9ED';
+        this.ctx.lineWidth = 0.5;
+        for (let i = 0; i < this.height; i += 40) {
+            this.ctx.beginPath();
+            this.ctx.moveTo(0, i);
+            this.ctx.lineTo(this.width, i);
+            this.ctx.stroke();
+        }
+        
+        // Main wave with glow effect
+        this.ctx.shadowBlur = 20;
+        this.ctx.shadowColor = config.color;
+        
+        this.ctx.beginPath();
+        this.ctx.strokeStyle = config.color;
+        this.ctx.lineWidth = 3;
+        
+        for (let x = 0; x < this.width; x += 2) {
+            const y = centerY + 
+                Math.sin((x + this.offset) * config.frequency) * config.amplitude +
+                Math.sin((x + this.offset) * config.frequency * 2) * (config.amplitude * 0.3);
+            
+            if (x === 0) {
+                this.ctx.moveTo(x, y);
+            } else {
+                this.ctx.lineTo(x, y);
+            }
+        }
+        this.ctx.stroke();
+        
+        // Sub wave (more transparent)
+        this.ctx.shadowBlur = 10;
+        this.ctx.globalAlpha = 0.3;
+        this.ctx.beginPath();
+        this.ctx.lineWidth = 2;
+        
+        for (let x = 0; x < this.width; x += 2) {
+            const y = centerY + 
+                Math.sin((x + this.offset + 50) * config.frequency) * (config.amplitude * 0.7) +
+                Math.sin((x + this.offset + 50) * config.frequency * 1.5) * (config.amplitude * 0.2);
+            
+            if (x === 0) {
+                this.ctx.moveTo(x, y);
+            } else {
+                this.ctx.lineTo(x, y);
+            }
+        }
+        this.ctx.stroke();
+        
+        this.ctx.globalAlpha = 1;
+        this.ctx.shadowBlur = 0;
+        
+        if (this.isAnimating) {
+            this.offset += 2;
+            this.animationId = requestAnimationFrame(() => this.drawWave());
+        }
+    }
+}

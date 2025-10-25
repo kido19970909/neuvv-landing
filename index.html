@@ -113,6 +113,77 @@
         </div>
     </section>
 
+    <!-- Brainwave Visualization Section -->
+    <section class="brainwave-section">
+        <div class="container">
+            <div class="brainwave-header">
+                <h2 class="brainwave-title">NEUVV</h2>
+                <p class="brainwave-subtitle">BRAINWAVE VISUALIZATION</p>
+            </div>
+
+            <div class="brainwave-canvas-container">
+                <canvas id="brainwaveCanvas" width="1000" height="400"></canvas>
+                
+                <div class="wave-info">
+                    <h3 class="wave-name" id="waveName">알파파 (Alpha)</h3>
+                    <p class="wave-description" id="waveDescription">이완된 각성 상태 (8-13 Hz)</p>
+                </div>
+            </div>
+
+            <div class="brainwave-controls">
+                <div class="control-panel">
+                    <h4 class="control-title">뇌파 유형 선택</h4>
+                    <div class="wave-buttons">
+                        <button class="wave-btn active" data-wave="alpha">
+                            <div class="btn-name">알파파 (Alpha)</div>
+                            <div class="btn-desc">이완된 각성 상태 (8-13 Hz)</div>
+                        </button>
+                        <button class="wave-btn" data-wave="theta">
+                            <div class="btn-name">세타파 (Theta)</div>
+                            <div class="btn-desc">깊은 이완과 명상 상태 (4-8 Hz)</div>
+                        </button>
+                        <button class="wave-btn" data-wave="delta">
+                            <div class="btn-name">델타파 (Delta)</div>
+                            <div class="btn-desc">깊은 수면 상태 (0.5-4 Hz)</div>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="control-panel">
+                    <h4 class="control-title">제어</h4>
+                    <button id="playPauseBtn" class="play-btn">⏸ 일시정지</button>
+                    
+                    <div class="info-box">
+                        <p class="info-text">
+                            <span class="info-highlight">뇌파 패턴</span>은 
+                            NEUVV의 과학적 접근을 상징합니다. 각 파형은 실제 뇌파의 특성을 반영하여 
+                            디자인되었습니다.
+                        </p>
+                    </div>
+
+                    <div class="wave-legend">
+                        <div class="legend-item">
+                            <div class="legend-dot alpha"></div>
+                            이완
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot theta"></div>
+                            명상
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot delta"></div>
+                            수면
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="brainwave-footer">
+                <p class="footer-text">NEURO × NEW WAVE · 뇌과학 기반 마인드풀니스</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Products Section -->
     <section class="products">
         <div class="container">
