@@ -467,6 +467,8 @@ h1, h2, h3 {
     justify-content: center;
     position: relative;
     overflow: hidden;
+    perspective: 1000px;
+    transform-style: preserve-3d;
 }
 
 .product-bg-image {
@@ -482,11 +484,39 @@ h1, h2, h3 {
 
 .product-main-image {
     position: relative;
-    max-width: 80px;
-    max-height: 120px;
+    max-width: 140px;
+    max-height: 200px;
     object-fit: contain;
     z-index: 2;
-    filter: drop-shadow(0 6px 12px rgba(0,0,0,0.12));
+    filter: drop-shadow(0 8px 20px rgba(0,0,0,0.15));
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transform: rotateY(-2deg) rotateX(2deg);
+}
+
+.product-card:hover .product-main-image {
+    transform: rotateY(8deg) rotateX(8deg) scale(1.08) translateZ(20px);
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
+}
+
+.product-main-image::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.3));
+    border-radius: 15px;
+    z-index: -1;
+    transform: translateZ(-10px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.product-card:hover .product-main-image::before {
+    opacity: 1;
 }
 
 .product-placeholder {
