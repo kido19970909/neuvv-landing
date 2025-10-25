@@ -350,22 +350,24 @@ h1, h2, h3 {
 
 /* Values Section */
 .values {
-    padding: 100px 0;
+    padding: 80px 0;
     background: #f8f9fa;
 }
 
 .values-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .value-card {
     background: white;
-    padding: 40px 30px;
-    border-radius: 20px;
+    padding: 30px 20px;
+    border-radius: 15px;
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -375,14 +377,14 @@ h1, h2, h3 {
 }
 
 .value-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 20px;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 15px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 .brainwave-icon {
@@ -398,16 +400,17 @@ h1, h2, h3 {
 }
 
 .value-title {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: #2c3e50;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .value-subtitle {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #666;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     font-weight: 500;
+    line-height: 1.4;
 }
 
 .value-description {
@@ -418,43 +421,46 @@ h1, h2, h3 {
 
 /* Products Section */
 .products {
-    padding: 100px 0;
+    padding: 80px 0;
     background: white;
 }
 
 .product-intro {
     text-align: center;
-    font-size: 18px;
-    line-height: 1.8;
+    font-size: 16px;
+    line-height: 1.7;
     color: #555;
-    margin-bottom: 60px;
-    max-width: 800px;
+    margin-bottom: 50px;
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
 }
 
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 60px;
-    margin-bottom: 60px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    margin-bottom: 50px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .product-card {
     background: white;
-    border-radius: 20px;
+    border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
 }
 
 .product-image {
-    height: 300px;
+    height: 250px;
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     display: flex;
     align-items: center;
@@ -476,11 +482,11 @@ h1, h2, h3 {
 
 .product-main-image {
     position: relative;
-    max-width: 120px;
-    max-height: 200px;
+    max-width: 100px;
+    max-height: 160px;
     object-fit: contain;
     z-index: 2;
-    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15));
 }
 
 .product-placeholder {
@@ -538,33 +544,33 @@ h1, h2, h3 {
 }
 
 .product-info {
-    padding: 30px;
+    padding: 25px;
 }
 
 .product-name {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     color: #2c3e50;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
 }
 
 .product-type {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: #666;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .brainwave-data {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .wave-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;
-    padding: 8px 12px;
+    margin-bottom: 6px;
+    padding: 6px 10px;
     background: #f8f9fa;
-    border-radius: 8px;
+    border-radius: 6px;
 }
 
 .wave-bar-container {
@@ -651,20 +657,23 @@ h1, h2, h3 {
 
 .sample-request-btn-container {
     text-align: center;
-    margin-top: 40px;
+    margin-top: 30px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .sample-request-btn {
     display: inline-block;
     background: linear-gradient(135deg, #42FA57 0%, #667eea 100%);
     color: white;
-    padding: 16px 40px;
-    border-radius: 30px;
+    padding: 14px 35px;
+    border-radius: 25px;
     text-decoration: none;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 600;
     transition: all 0.3s ease;
-    box-shadow: 0 10px 20px rgba(66, 250, 87, 0.3);
+    box-shadow: 0 8px 18px rgba(66, 250, 87, 0.25);
 }
 
 .sample-request-btn:hover {
@@ -1034,11 +1043,13 @@ h1, h2, h3 {
     
     .values-grid {
         grid-template-columns: 1fr;
+        max-width: 400px;
     }
     
     .products-grid {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 30px;
+        max-width: 400px;
     }
     
     .product-intro {
