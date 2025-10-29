@@ -1019,6 +1019,73 @@ h1, h2, h3 {
     box-shadow: 0 15px 30px rgba(66, 250, 87, 0.4);
 }
 
+/* Instagram Section */
+.instagram-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #000 0%, #1a1a1a 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.instagram-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(66, 250, 87, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.instagram-section .section-title {
+    color: #fff;
+}
+
+.instagram-intro {
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #ccc;
+    margin-bottom: 50px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.instagram-qr {
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.qr-image {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(66, 250, 87, 0.2);
+    transition: all 0.4s ease;
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.qr-image:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 30px 80px rgba(66, 250, 87, 0.4);
+}
+
+.qr-text {
+    color: #42FA57;
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
 /* Sample Form Section */
 .sample-form {
     padding: 100px 0;
@@ -1417,6 +1484,19 @@ h1, h2, h3 {
     .wave-legend {
         flex-direction: column;
         gap: 10px;
+    }
+    
+    .instagram-qr {
+        max-width: 90%;
+    }
+    
+    .qr-image {
+        max-width: 200px;
+        padding: 15px;
+    }
+    
+    .qr-text {
+        font-size: 1rem;
     }
     
     .radio-group {
