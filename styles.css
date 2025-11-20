@@ -355,7 +355,7 @@ h1, h2, h3 {
 }
 
 .values .section-title {
-    color: #2c3e50;
+    color: #2c3e50 !important;
 }
 
 .values-grid {
@@ -1097,7 +1097,7 @@ h1, h2, h3 {
 }
 
 .sample-form .section-title {
-    color: #2c3e50;
+    color: #2c3e50 !important;
 }
 
 .form-intro {
