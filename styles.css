@@ -354,6 +354,10 @@ h1, h2, h3 {
     background: #f8f9fa;
 }
 
+.values .section-title {
+    color: #2c3e50;
+}
+
 .values-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -1090,6 +1094,10 @@ h1, h2, h3 {
 .sample-form {
     padding: 100px 0;
     background: #f8f9fa;
+}
+
+.sample-form .section-title {
+    color: #2c3e50;
 }
 
 .form-intro {
